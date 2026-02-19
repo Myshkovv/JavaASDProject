@@ -1,6 +1,6 @@
 public class Node {
     int info;
-    Node nextNode;
+    public Node nextNode;
 
     public Node(int info){
         this.info = info;

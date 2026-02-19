@@ -3,7 +3,7 @@ public class CustomList {
     private Node start;
 
     public CustomList(int info){
-        this.start = new Node(info);
+        start = new Node(info);
     }
 
     public CustomList(int[] massiv){
