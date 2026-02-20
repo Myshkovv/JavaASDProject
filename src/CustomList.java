@@ -42,7 +42,7 @@ public class CustomList {
     public void deleteLast(){
 
         if (start == null){
-            System.out.print("Список пуст. Удаление невозможно.");
+            System.out.println("Список пуст. Удаление невозможно.");
             return;
         }
         // отдельно обрабатываем случай с одним элементом в списке
@@ -53,10 +53,63 @@ public class CustomList {
         // случай более одного элемента
         Node pointer = start;
         // идем к предпоследнему элементу
-        while (pointer.nextNode.nextNode == null){
+        while (pointer.nextNode.nextNode != null){
             pointer = pointer.nextNode;
         }
         pointer.nextNode = null;
+    }
+    // переворот
+    public void reverse(){
+        Node pointer = start;
+        // предудущий
+        Node previous = null;
+        // следущий
+        Node next;
+        while (pointer != null){
+            next = pointer.nextNode;
+            pointer.nextNode = previous;
+            previous = pointer;
+            pointer = next;
+        }
+        start = previous;
+    }
+    // длина списка
+    public int length(){
+        Node pointer = start;
+        int count = 0;
+        while (pointer!=null){
+            count+=1;
+            pointer = pointer.nextNode;
+        }
+        return count;
+    }
+    // проверка на пустоту
+    public boolean itsNull(){
+        return start == null;
+    }
+    // наличие элемента
+    public boolean itHere(int i){
+        Node pointer = start;
+        while (pointer.nextNode != null){
+            if (pointer.info == i){
+                return true;
+            }
+            pointer = pointer.nextNode;
+        }
+        return false;
+    }
+    // выдать индексы вхождения
+    public void indexesOf(int i){
+        Node pointer = start;
+        int counter = 0;
 
+        while (pointer.nextNode != null){
+            if (pointer.info == i){
+                System.out.print(counter + " ");;
+            }
+            pointer = pointer.nextNode;
+            counter+=1;
+        }
+        System.out.println();
     }
 }
