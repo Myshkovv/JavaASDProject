@@ -13,19 +13,27 @@ public class Main {
 //        customList.deleteLast();
 //        customList.print();
 //        customList.deleteLast();
-        customList1.deleteLast();
+//        customList1.deleteLast();
+//        customList1.print();
+//        customList1.reverse();
+//        customList.reverse();
+//        customList.print();
+//        customList1.print();
+//        System.out.println("Длина списка: " + customList1.length());
+//        System.out.println("Есть ли элемент 2: " + customList1.itHere(2));
+//        customList1.indexesOf(2);
+//        customList1.add(2);
+//        customList1.print();
+//        customList1.indexesOf(2);
+//        System.out.println("список пуст? " + customList.itsNull());
+
+//        customList1.addMiddle(0, 42);
+
         customList1.print();
-        customList1.reverse();
-        customList.reverse();
-        customList.print();
-        customList1.print();
-        System.out.println("Длина списка: " + customList1.length());
-        System.out.println("Есть ли элемент 2: " + customList1.itHere(2));
-        customList1.indexesOf(2);
-        customList1.add(2);
-        customList1.print();
-        customList1.indexesOf(2);
-        System.out.println("список пуст? " + customList.itsNull());
+
+        CustomList customList2 = new CustomList(massiv);
+
+        System.out.println(customList1.isEqual(customList2));
 
 
     }

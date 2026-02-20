@@ -112,4 +112,48 @@ public class CustomList {
         }
         System.out.println();
     }
+
+    public void addMiddle(int index, int information){
+        if (index == 0){
+            add(information);
+            return;
+        }
+
+        Node pointer = start;
+        Node newNode = new Node(information);
+        int counter = 0;
+
+        while (counter != index-1){
+            counter++;
+            pointer = pointer.nextNode;
+        }
+        newNode.nextNode = pointer.nextNode;
+        pointer.nextNode = newNode;
+
+    }
+
+
+//    @Override
+//    public boolean equals(CustomList customList2){
+//
+//        if (length() == customList2.length()){
+//            Node pointer = start;
+//            Node pointer2 = customList2.start;
+//
+//            while (pointer.nextNode != null) {
+//                if (pointer.info != pointer2.info){
+//                    return false;
+//                }
+//                pointer = pointer.nextNode;
+//                pointer2 = pointer2.nextNode;
+//            }
+//
+//            return true;
+//
+//        }
+//        else {
+//            return false;
+//        }
+//    }
+
 }
