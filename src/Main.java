@@ -33,7 +33,7 @@ public class Main {
 
         CustomList customList2 = new CustomList(massiv);
 
-        System.out.println(customList1.isEqual(customList2));
+        System.out.println("Проверка вложить в середину - " + Tester.testAddMiddle());
 
 
     }

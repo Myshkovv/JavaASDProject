@@ -133,27 +133,30 @@ public class CustomList {
     }
 
 
-//    @Override
-//    public boolean equals(CustomList customList2){
-//
-//        if (length() == customList2.length()){
-//            Node pointer = start;
-//            Node pointer2 = customList2.start;
-//
-//            while (pointer.nextNode != null) {
-//                if (pointer.info != pointer2.info){
-//                    return false;
-//                }
-//                pointer = pointer.nextNode;
-//                pointer2 = pointer2.nextNode;
-//            }
-//
-//            return true;
-//
-//        }
-//        else {
-//            return false;
-//        }
-//    }
+    @Override
+    public boolean equals(Object obj){
+
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        CustomList customList2 = (CustomList) obj;
+
+        if (length() == customList2.length()){
+            Node pointer = start;
+            Node pointer2 = customList2.start;
+
+            while (pointer != null) {
+                if (pointer.info != pointer2.info){
+                    return false;
+                }
+                pointer = pointer.nextNode;
+                pointer2 = pointer2.nextNode;
+            }
+            return true;
+
+        }
+        else {
+            return false;
+        }
+    }
 
 }
