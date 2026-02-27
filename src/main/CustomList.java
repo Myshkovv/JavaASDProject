@@ -1,6 +1,12 @@
+package main;
+
 public class CustomList {
     // указатель на начало списка
     private Node start;
+
+    public CustomList(){
+        start = null;
+    }
 
     public CustomList(int info){
         start = new Node(info);
@@ -8,14 +14,27 @@ public class CustomList {
 
     public CustomList(int[] massiv){
         for (int i = massiv.length-1; i>=0; i--){
-            add(massiv[i]);
+            addToFirst(massiv[i]);
         }
     }
-
-    public void add(int info){
+    // добавление в начало
+    public void addToFirst(int info){
         Node node = new Node(info);
         node.nextNode = start;
         start = node;
+    }
+    // в конец
+    public void add(int info){
+        if (start == null){
+            start = new Node(info);
+            return;
+        }
+        Node pointer = start;
+        // идем к последнему элементу
+        while (pointer.nextNode != null){
+            pointer = pointer.nextNode;
+        }
+        pointer.nextNode = new Node(info);
     }
 
     public void print(){
@@ -112,10 +131,14 @@ public class CustomList {
         }
         System.out.println();
     }
-
+    // вложить в середину
     public void addMiddle(int index, int information){
+        if (index < 0 || index > length()) {
+            System.out.println("Индекс не подходит");
+        }
+
         if (index == 0){
-            add(information);
+            addToFirst(information);
             return;
         }
 
@@ -135,7 +158,7 @@ public class CustomList {
 
     @Override
     public boolean equals(Object obj){
-
+        if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
 
         CustomList customList2 = (CustomList) obj;
@@ -157,6 +180,32 @@ public class CustomList {
         else {
             return false;
         }
+    }
+
+    //Добавить диапозон значений
+    public void addRange(int infoStart, int infoFinish){
+        if (infoStart < infoFinish){
+            for (int i = infoStart; i < infoFinish; i++){
+                add(i);
+            }
+        }
+        else {
+            System.out.println("Неправильный диапозон значений");
+        }
+    }
+
+    public void deletePosition(int index){
+        if (index < 0 || index>length()){
+            System.out.println("Недопустимый индекс");
+        }
+        int counter = 0;
+        Node pointer = start;
+        while ((counter < index-1) & (pointer.nextNode!=null)){
+            pointer = pointer.nextNode;
+            counter++;
+        }
+        pointer.nextNode = pointer.nextNode.nextNode;
+
     }
 
 }

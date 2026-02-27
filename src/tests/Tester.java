@@ -1,3 +1,7 @@
+package tests;
+
+import main.CustomList;
+
 public class Tester {
 
     public static boolean testAddMiddle(){
@@ -11,7 +15,6 @@ public class Tester {
             return true;
         }
         return false;
-
 
     }
 
