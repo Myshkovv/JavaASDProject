@@ -6,110 +6,122 @@ public class CustomList {
         start = new Node(info);
     }
 
-    public CustomList(int[] massiv){
-        for (int i = massiv.length-1; i>=0; i--){
-            add(massiv[i]);
-        }
-    }
-
-    public void add(int info){
+    public void addStart(int info){
         Node node = new Node(info);
         node.nextNode = start;
+        start.previousNode = node;
         start = node;
     }
 
-    public void print(){
+    public void addFinish(int info){
         if (start == null){
-            System.out.println("Список пуст.");
+            start = new Node(info);
             return;
         }
-        // указатель
+        if (start.nextNode == null){
+            Node node = new Node(info);
+            start.nextNode = node;
+            node.previousNode = start;
+            return;
+        }
+
         Node pointer = start;
 
-
-        while (pointer != null){
-            if (pointer.nextNode == null){
-                System.out.print(pointer.info);
-            }
-            else{
-                System.out.print(pointer.info + ", ");
-            }
+        while (pointer.nextNode != null){
             pointer = pointer.nextNode;
         }
-        System.out.println();
+        Node node = new Node(info);
+        pointer.nextNode = node;
+        node.previousNode = pointer;
     }
 
-    public void deleteLast(){
-
+    public void deleteStart(){
         if (start == null){
-            System.out.println("Список пуст. Удаление невозможно.");
+            System.out.println("Удаление невозможно");
             return;
         }
-        // отдельно обрабатываем случай с одним элементом в списке
         if (start.nextNode == null){
             start = null;
             return;
         }
-        // случай более одного элемента
+        start = start.nextNode;
+        start.previousNode = null;
+    }
+
+    public void deleteFinish(){
+        if (start == null){
+            System.out.println("Удаление невозможно");
+            return;
+        }
+        if (start.nextNode == null){
+            start = null;
+            return;
+        }
         Node pointer = start;
-        // идем к предпоследнему элементу
         while (pointer.nextNode.nextNode != null){
             pointer = pointer.nextNode;
         }
         pointer.nextNode = null;
     }
-    // переворот
-    public void reverse(){
-        Node pointer = start;
-        // предудущий
-        Node previous = null;
-        // следущий
-        Node next;
-        while (pointer != null){
-            next = pointer.nextNode;
-            pointer.nextNode = previous;
-            previous = pointer;
-            pointer = next;
-        }
-        start = previous;
-    }
-    // длина списка
+
     public int length(){
         Node pointer = start;
         int count = 0;
         while (pointer!=null){
-            count+=1;
             pointer = pointer.nextNode;
+            count++;
         }
         return count;
     }
-    // проверка на пустоту
-    public boolean itsNull(){
-        return start == null;
-    }
-    // наличие элемента
-    public boolean itHere(int i){
-        Node pointer = start;
-        while (pointer.nextNode != null){
-            if (pointer.info == i){
-                return true;
-            }
-            pointer = pointer.nextNode;
-        }
-        return false;
-    }
-    // выдать индексы вхождения
-    public void indexesOf(int i){
-        Node pointer = start;
-        int counter = 0;
 
-        while (pointer.nextNode != null){
-            if (pointer.info == i){
-                System.out.print(counter + " ");;
-            }
-            pointer = pointer.nextNode;
-            counter+=1;
+    public void addPosition(int index, int info){
+        if (index < 0 || index >= length()){
+            System.out.println("Невозможный индекс");
+            return;
         }
-        System.out.println();
+        if (index == 0){
+            addStart(info);
+            return;
+        }
+        if (index == length()){
+            addFinish(info);
+            return;
+        }
+        int counter = 0;
+        Node pointer = start;
+        while (counter<index-1){
+            pointer = pointer.nextNode;
+            counter++;
+        }
+        Node node = new Node(info);
+        pointer.nextNode.previousNode = node;
+        pointer.nextNode = node;
     }
+
+    public void deletePosition(int index){
+        if (index < 0 || index >= length()){
+            System.out.println("Невозможный индекс");
+            return;
+        }
+        if (index == 0){
+            deleteStart();
+            return;
+        }
+        if (index == length()-1){
+            deleteFinish();
+            return;
+        }
+        int counter = 0;
+        Node pointer = start;
+        while (counter<index-1){
+            pointer = pointer.nextNode;
+            counter++;
+        }
+        Node node = pointer.nextNode.nextNode;
+        node.previousNode = pointer;
+        pointer.nextNode = node;
+
+    }
+
+
 }
