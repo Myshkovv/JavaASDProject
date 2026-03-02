@@ -109,7 +109,7 @@ public class CustomList {
     // наличие элемента
     public boolean itHere(int i){
         Node pointer = start;
-        while (pointer.nextNode != null){
+        while (pointer != null){
             if (pointer.info == i){
                 return true;
             }
@@ -122,9 +122,9 @@ public class CustomList {
         Node pointer = start;
         int counter = 0;
 
-        while (pointer.nextNode != null){
+        while (pointer != null){
             if (pointer.info == i){
-                System.out.print(counter + " ");;
+                System.out.print(counter + " ");
             }
             pointer = pointer.nextNode;
             counter+=1;
