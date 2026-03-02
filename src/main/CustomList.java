@@ -194,17 +194,69 @@ public class CustomList {
         }
     }
 
+    public void deleteFirst(){
+        start = start.nextNode;
+    }
+
     public void deletePosition(int index){
-        if (index < 0 || index>length()){
+        if (index < 0 || index>= length()){
             System.out.println("Недопустимый индекс");
+            return;
+        }
+
+        if (index == 0){
+            deleteFirst();
+            return;
+        }
+        if (index == length()-1){
+            deleteLast();
+            return;
         }
         int counter = 0;
         Node pointer = start;
-        while ((counter < index-1) & (pointer.nextNode!=null)){
+
+        while ((counter < index-1)){
             pointer = pointer.nextNode;
             counter++;
         }
         pointer.nextNode = pointer.nextNode.nextNode;
+    }
+
+    public void deleteStartingFrom(int index){
+        if (index < 0 || index>= length()){
+            System.out.println("Недопустимый индекс");
+            return;
+        }
+        if (index == 0){
+            start = null;
+            return;
+        }
+        int counter = 0;
+        Node pointer = start;
+
+        while (counter < index-1){
+            pointer = pointer.nextNode;
+            counter++;
+        }
+        pointer.nextNode = null;
+    }
+
+    public void deleteValue(int info){
+        if (start == null) {
+            return;
+        }
+        while (start != null && start.info == info) {
+            start = start.nextNode;
+        }
+        Node pointer = start;
+        while (pointer.nextNode != null){
+            if (pointer.nextNode.info == info){
+                pointer.nextNode = pointer.nextNode.nextNode;
+            } else {
+                pointer = pointer.nextNode;
+            }
+
+        }
 
     }
 

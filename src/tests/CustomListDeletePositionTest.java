@@ -33,5 +33,15 @@ public class CustomListDeletePositionTest {
         assertEquals(list2, list, "При удалении должно получится [2, 3, 4, 5]");
     }
 
+    @Test
+    @DisplayName("Удаляем последний элемент")
+    void testDeletePosition_LastElement(){
+        CustomList list2 = new CustomList(new int[] {1, 2, 3, 4});
+
+        list.deletePosition(4);
+
+        assertEquals(list2, list, "При удалении должно получится [1, 2, 3, 4]");
+    }
+
 
 }
