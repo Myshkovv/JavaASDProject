@@ -1,13 +1,13 @@
-public class CustomList {
+public class DoubleLinkedList {
     // указатель на начало списка
-    private Node start;
+    private DoubleNode start;
 
-    public CustomList(int info){
-        start = new Node(info);
+    public DoubleLinkedList(int info){
+        start = new DoubleNode(info);
     }
 
     public void addStart(int info){
-        Node node = new Node(info);
+        DoubleNode node = new DoubleNode(info);
         node.nextNode = start;
         start.previousNode = node;
         start = node;
@@ -15,22 +15,22 @@ public class CustomList {
 
     public void addFinish(int info){
         if (start == null){
-            start = new Node(info);
+            start = new DoubleNode(info);
             return;
         }
         if (start.nextNode == null){
-            Node node = new Node(info);
+            DoubleNode node = new DoubleNode(info);
             start.nextNode = node;
             node.previousNode = start;
             return;
         }
 
-        Node pointer = start;
+        DoubleNode pointer = start;
 
         while (pointer.nextNode != null){
             pointer = pointer.nextNode;
         }
-        Node node = new Node(info);
+        DoubleNode node = new DoubleNode(info);
         pointer.nextNode = node;
         node.previousNode = pointer;
     }
@@ -57,7 +57,7 @@ public class CustomList {
             start = null;
             return;
         }
-        Node pointer = start;
+        DoubleNode pointer = start;
         while (pointer.nextNode.nextNode != null){
             pointer = pointer.nextNode;
         }
@@ -65,7 +65,7 @@ public class CustomList {
     }
 
     public int length(){
-        Node pointer = start;
+        DoubleNode pointer = start;
         int count = 0;
         while (pointer!=null){
             pointer = pointer.nextNode;
@@ -88,12 +88,12 @@ public class CustomList {
             return;
         }
         int counter = 0;
-        Node pointer = start;
+        DoubleNode pointer = start;
         while (counter<index-1){
             pointer = pointer.nextNode;
             counter++;
         }
-        Node node = new Node(info);
+        DoubleNode node = new DoubleNode(info);
         pointer.nextNode.previousNode = node;
         pointer.nextNode = node;
     }
@@ -112,12 +112,12 @@ public class CustomList {
             return;
         }
         int counter = 0;
-        Node pointer = start;
+        DoubleNode pointer = start;
         while (counter<index-1){
             pointer = pointer.nextNode;
             counter++;
         }
-        Node node = pointer.nextNode.nextNode;
+        DoubleNode node = pointer.nextNode.nextNode;
         node.previousNode = pointer;
         pointer.nextNode = node;
 
