@@ -1,9 +1,21 @@
+package main;
+
 public class DoubleLinkedList {
     // указатель на начало списка
     private DoubleNode start;
 
+    public DoubleLinkedList() {
+        start = null;
+    }
+
     public DoubleLinkedList(int info){
         start = new DoubleNode(info);
+    }
+
+    public DoubleLinkedList(int[] massiv){
+        for (int i = massiv.length-1; i>=0;i--){
+            addFinish(massiv[i]);
+        }
     }
 
     public void addStart(int info){
@@ -16,12 +28,6 @@ public class DoubleLinkedList {
     public void addFinish(int info){
         if (start == null){
             start = new DoubleNode(info);
-            return;
-        }
-        if (start.nextNode == null){
-            DoubleNode node = new DoubleNode(info);
-            start.nextNode = node;
-            node.previousNode = start;
             return;
         }
 
@@ -94,6 +100,8 @@ public class DoubleLinkedList {
             counter++;
         }
         DoubleNode node = new DoubleNode(info);
+        node.nextNode = pointer.nextNode;
+        node.previousNode = pointer;
         pointer.nextNode.previousNode = node;
         pointer.nextNode = node;
     }
