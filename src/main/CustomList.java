@@ -257,7 +257,48 @@ public class CustomList {
             }
 
         }
+    }
 
+    public int get(int index) {
+        if (index < 0 || index >= length()) {
+            System.out.println(("Индекс не подходит"));
+        }
+
+        Node pointer = start;
+        int counter = 0;
+        while (counter<index){
+            pointer = pointer.nextNode;
+            counter++;
+        }
+        return pointer.info;
+    }
+
+    public int swapPairs(){
+
+        Node pointer = start;
+
+        if (pointer.nextNode!= null){
+            start = pointer.nextNode;
+        }
+
+        while (pointer.nextNode != null){
+            if (pointer.nextNode.nextNode != null){
+                Node afterPairs = pointer.nextNode.nextNode;
+                Node pairs2 = pointer.nextNode;
+                Node pairs1 = pointer;
+                pointer.nextNode = afterPairs;
+                pairs2.nextNode = pairs1;
+                pointer = pointer.nextNode.nextNode;
+            } else {
+                Node afterPairs = pointer.nextNode.nextNode;
+                Node pairs2 = pointer.nextNode;
+                pointer.nextNode = afterPairs;
+                pairs2.nextNode = pointer;
+            }
+
+        }
+
+        return start.info;
     }
 
 }
