@@ -46,4 +46,18 @@ public class CustomListAddMiddleTest {
         assertEquals(list2, list, "Список должен содержать [42, 1, 2, 3, 4]");
 
     }
+
+    @Test
+    @DisplayName("добавление в конец")
+    void testAddMiddle_toEnd(){
+
+        list.addMiddle(4, 42);
+
+        CustomList list2 = new CustomList(new int[] {1, 2, 3, 4, 42});
+
+        assertEquals(list2, list, "Список должен содержать [1, 2, 3, 4, 42]");
+
+    }
+
+
 }

@@ -133,7 +133,7 @@ public class CustomList {
     }
     // вложить в середину
     public void addMiddle(int index, int information){
-        if (index < 0 || index > length()) {
+        if (index < 0) {
             System.out.println("Индекс не подходит");
         }
 
@@ -147,6 +147,10 @@ public class CustomList {
         int counter = 0;
 
         while (counter != index-1){
+            if (pointer == null){
+                System.out.println("Индекс не подходит");
+                return;
+            }
             counter++;
             pointer = pointer.nextNode;
         }
@@ -199,7 +203,7 @@ public class CustomList {
     }
 
     public void deletePosition(int index){
-        if (index < 0 || index>= length()){
+        if (index < 0){
             System.out.println("Недопустимый индекс");
             return;
         }
@@ -215,7 +219,11 @@ public class CustomList {
         int counter = 0;
         Node pointer = start;
 
-        while ((counter < index-1)){
+        while (counter < index-1){
+            if (pointer.nextNode == null){
+                System.out.println("Индекс не подходит");
+                return;
+            }
             pointer = pointer.nextNode;
             counter++;
         }
@@ -223,7 +231,7 @@ public class CustomList {
     }
 
     public void deleteStartingFrom(int index){
-        if (index < 0 || index>= length()){
+        if (index < 0){
             System.out.println("Недопустимый индекс");
             return;
         }
@@ -235,6 +243,10 @@ public class CustomList {
         Node pointer = start;
 
         while (counter < index-1){
+            if (pointer == null){
+                System.out.println("Индекс не подходит");
+                return;
+            }
             pointer = pointer.nextNode;
             counter++;
         }
@@ -260,45 +272,66 @@ public class CustomList {
     }
 
     public int get(int index) {
-        if (index < 0 || index >= length()) {
+        if (index < 0) {
             System.out.println(("Индекс не подходит"));
         }
 
         Node pointer = start;
         int counter = 0;
         while (counter<index){
+            if (pointer == null){
+                System.out.println("Индекс не подходит");
+                return -1;
+            }
             pointer = pointer.nextNode;
             counter++;
         }
         return pointer.info;
     }
 
-    public int swapPairs(){
+    public void swapPairs(){
 
+       if (start == null || start.nextNode == null){
+           return;
+       }
+       // пустышка
+       Node pyst = new Node(0);
+       pyst.nextNode = start;
+
+       Node lastPairs = pyst;
+       Node current = start;
+
+        while (current != null && current.nextNode != null){
+            Node node1 = current;
+            Node node2 = current.nextNode;
+            Node nextPairs = current.nextNode.nextNode;
+
+            lastPairs.nextNode = node2;
+            node2.nextNode = node1;
+            node1.nextNode = nextPairs;
+            lastPairs = node1;
+            current = nextPairs;
+
+        }
+
+        start = pyst.nextNode;
+    }
+
+    public Node startCycle(){
+
+        Node lastNode = null;
         Node pointer = start;
 
-        if (pointer.nextNode!= null){
-            start = pointer.nextNode;
-        }
-
         while (pointer.nextNode != null){
-            if (pointer.nextNode.nextNode != null){
-                Node afterPairs = pointer.nextNode.nextNode;
-                Node pairs2 = pointer.nextNode;
-                Node pairs1 = pointer;
-                pointer.nextNode = afterPairs;
-                pairs2.nextNode = pairs1;
-                pointer = pointer.nextNode.nextNode;
-            } else {
-                Node afterPairs = pointer.nextNode.nextNode;
-                Node pairs2 = pointer.nextNode;
-                pointer.nextNode = afterPairs;
-                pairs2.nextNode = pointer;
+            lastNode = pointer;
+            pointer = pointer.nextNode;
+            if (pointer.nextNode == lastNode ){
+                return lastNode;
             }
-
         }
+        return null;
 
-        return start.info;
     }
+
 
 }

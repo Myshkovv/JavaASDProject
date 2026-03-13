@@ -27,6 +27,21 @@ public class AdditionalTasksLinkedList {
 
     }
 
+    public static String afterSwapPairs(CustomList list){
+        list.swapPairs();
+        String string = "";
+
+        for (int i = 0; i<4; i++){
+            string += (list.get(i) + " ");
+
+        }
+        return string;
+    }
+
+    public static int startCycle(CustomList list){
+        return list.startCycle().info;
+    }
+
 
 
 }

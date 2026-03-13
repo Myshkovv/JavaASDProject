@@ -47,6 +47,25 @@ public class AdditionalTasksLinkedListTest {
 
     }
 
+    @Test
+    @DisplayName("Перемешать пары значений")
+    void testAfterSwapPairs(){
+        String string = AdditionalTasksLinkedList.afterSwapPairs(list);
+
+        CustomList list2 = new CustomList(new int[] {2, 1, 4, 3, 6, 5});
+
+        assertEquals(list2, list, "при удалениии должно получится [2, 1, 4, 3, 6, 5]");
+        assertEquals("2 1 4 3 ", string, "при удалении должно получится [2 1 4 3]");
+    }
+
+    @Test
+    @DisplayName("Выдать начало цикла")
+    void testStartCycle(){
+        
+    }
+
+
+
 
 
 

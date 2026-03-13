@@ -81,7 +81,7 @@ public class DoubleLinkedList {
     }
 
     public void addPosition(int index, int info){
-        if (index < 0 || index >= length()){
+        if (index < 0){
             System.out.println("Невозможный индекс");
             return;
         }
@@ -96,6 +96,10 @@ public class DoubleLinkedList {
         int counter = 0;
         DoubleNode pointer = start;
         while (counter<index-1){
+            if (pointer == null){
+                System.out.println("невозможный индекс");
+                return;
+            }
             pointer = pointer.nextNode;
             counter++;
         }
@@ -107,7 +111,7 @@ public class DoubleLinkedList {
     }
 
     public void deletePosition(int index){
-        if (index < 0 || index >= length()){
+        if (index < 0){
             System.out.println("Невозможный индекс");
             return;
         }
@@ -122,6 +126,10 @@ public class DoubleLinkedList {
         int counter = 0;
         DoubleNode pointer = start;
         while (counter<index-1){
+            if (pointer == null){
+                System.out.println("невозможный индекс");
+                return;
+            }
             pointer = pointer.nextNode;
             counter++;
         }
