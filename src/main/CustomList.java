@@ -212,10 +212,6 @@ public class CustomList {
             deleteFirst();
             return;
         }
-        if (index == length()-1){
-            deleteLast();
-            return;
-        }
         int counter = 0;
         Node pointer = start;
 
