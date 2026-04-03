@@ -139,5 +139,15 @@ public class DoubleLinkedList {
 
     }
 
+//    public void reverse(){
+//
+//        DoubleNode pointer = start;
+//
+//        DoubleNode next;
+//
+//
+//
+//    }
+
 
 }
